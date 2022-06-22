@@ -10,15 +10,11 @@ function TableData({
   archived,
   changeArchive,
 }) {
-  const messageRecived = new Date(last_comms.date_time).toLocaleDateString();
+  const messageRecived = new Date(last_comms.date_time).toDateString();
   let datetime;
-  if (
-    new Date(last_comms.date_time) ===
-    new Date(new Date(last_comms.date_time).getTime() - 24 * 60 * 60 * 1000)
-  ) {
-    datetime = "Yesterday";
-  }
-  if (messageRecived === new Date().toLocaleDateString()) {
+  if (new Date(last_comms.date_time).getDate() === new Date().getDate() - 1) {
+     datetime = "Yesterday";
+  } else if (messageRecived === new Date().toDateString()) {
     datetime = new Date(last_comms.date_time).toLocaleTimeString();
   } else {
     datetime = new Date(last_comms.date_time)
